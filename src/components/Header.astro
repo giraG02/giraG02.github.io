@@ -1,0 +1,32 @@
+---
+import { SITE } from '../config';
+import { url } from '../utils';
+const corrente = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
+const voci = [
+  { href: '/', nome: 'Home' },
+  { href: '/progetti/', nome: 'Progetti' },
+  { href: '/about/', nome: 'About' },
+  { href: '/contatti/', nome: 'Contatti' },
+];
+const attiva = (h: string) => (h === '/' ? corrente === '/' : corrente.startsWith(h));
+---
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href={url('/')}>{SITE.nome.split(' ')[0].toLowerCase()}<span>.</span>dev</a>
+    <nav aria-label="Navigazione principale">
+      {voci.map((v) => (
+        <a href={url(v.href)} aria-current={attiva(v.href) ? 'page' : undefined}>{v.nome}</a>
+      ))}
+      <button id="tema" type="button" aria-label="Cambia tema chiaro/scuro">tema</button>
+    </nav>
+  </div>
+</header>
+<script is:inline>
+  document.getElementById('tema').addEventListener('click', function () {
+    var attuale = document.documentElement.dataset.theme ||
+      (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var nuovo = attuale === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nuovo;
+    try { localStorage.setItem('tema', nuovo); } catch (e) {}
+  });
+</script>

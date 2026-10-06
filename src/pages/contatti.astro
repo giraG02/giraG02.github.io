@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+---
+<Base titolo="Contatti" descrizione={`Come contattare ${SITE.nome}`}>
+  <h1>Contatti</h1>
+  <p>Per opportunità di lavoro, tirocini o collaborazioni scrivimi pure.</p>
+  <ul>
+    <li>Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+    <li>GitHub: <a href={SITE.github} target="_blank" rel="noopener">{SITE.github}</a></li>
+    <li>LinkedIn: <a href={SITE.linkedin} target="_blank" rel="noopener">{SITE.linkedin}</a></li>
+  </ul>
+</Base>

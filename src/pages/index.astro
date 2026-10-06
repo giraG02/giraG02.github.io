@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { SITE } from '../config';
+import { ordina, url } from '../utils';
+
+const tutti = await getCollection('progetti', (p) => !p.data.bozza);
+const evidenza = ordina(tutti.filter((p) => p.data.in_evidenza));
+---
+<Base>
+  <section class="hero">
+    <div class="eyebrow">// {SITE.ruolo}</div>
+    <h1>{SITE.nome}</h1>
+    <p class="lead">{SITE.slogan}</p>
+    <p>
+      <a class="btn primario" href={url('/progetti/')}>Vedi i progetti</a>
+      <a class="btn" href={url('/contatti/')}>Contattami</a>
+      {SITE.cv && <a class="btn" href={url(SITE.cv)}>Scarica il CV</a>}
+    </p>
+  </section>
+
+  <h2>In evidenza</h2>
+  {evidenza.length === 0
+    ? <p class="muted">Nessun progetto in evidenza: imposta <code>in_evidenza: true</code> in un progetto.</p>
+    : <div class="griglia">{evidenza.map((p) => <ProjectCard progetto={p} />)}</div>}
+</Base>

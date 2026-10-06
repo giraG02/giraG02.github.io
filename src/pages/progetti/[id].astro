@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { TIPI } from '../../config';
+import { periodo, normalizza, url } from '../../utils';
+
+export async function getStaticPaths() {
+  const progetti = await getCollection('progetti', (p) => !p.data.bozza);
+  return progetti.map((p) => ({ params: { id: p.id }, props: { progetto: p } }));
+}
+
+const { progetto } = Astro.props;
+const d = progetto.data;
+const { Content } = await render(progetto);
+const tag = [...new Set(d.tag.map(normalizza))];
+---
+<Base titolo={d.titolo} descrizione={d.risultato}>
+  <a class="indietro" href={url('/progetti/')}>← tutti i progetti</a>
+  <p style="margin-top:1.25rem"><span class="tipo">{TIPI[d.tipo]}</span></p>
+  <h1>{d.titolo}</h1>
+
+  <dl class="scheda">
+    <div><dt>Periodo</dt><dd>{periodo(progetto)}</dd></div>
+    <div><dt>Il mio ruolo</dt><dd>{d.ruolo}</dd></div>
+    <div><dt>Strumenti</dt><dd>{d.strumenti.join(', ')}</dd></div>
+  </dl>
+
+  <p class="evidenza"><strong>Risultato.</strong> {d.risultato}</p>
+
+  {(d.report || d.link.length > 0) && (
+    <div class="azioni">
+      {d.report && <a class="btn primario" href={url(d.report)} download>Scarica il report</a>}
+      {d.link.map((l) => <a class="btn" href={l.url} target="_blank" rel="noopener">{l.etichetta}</a>)}
+    </div>
+  )}
+
+  {d.immagine && <img class="copertina" src={url(d.immagine)} alt={`Immagine del progetto ${d.titolo}`} />}
+
+  <div class="testo"><Content /></div>
+
+  <div class="tags" style="margin-top:2rem">{tag.map((t) => <span class="tag">{t}</span>)}</div>
+</Base>

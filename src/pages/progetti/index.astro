@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { ordina, normalizza } from '../../utils';
+
+const progetti = ordina(await getCollection('progetti', (p) => !p.data.bozza));
+const tuttiITag = [...new Set(progetti.flatMap((p) => p.data.tag.map(normalizza)))].sort();
+---
+<Base titolo="Progetti" descrizione="Elenco dei progetti: universitari, tesi e personali.">
+  <h1>Progetti</h1>
+  <p class="muted">Clicca su uno o più tag per filtrare: vengono mostrati i progetti che li hanno tutti.</p>
+
+  <div class="filtri" id="filtri" role="group" aria-label="Filtra per tag">
+    {tuttiITag.map((t) => <button type="button" data-tag={t} aria-pressed="false">{t}</button>)}
+  </div>
+  <p class="muted mono" id="contatore" aria-live="polite"></p>
+
+  <div class="griglia" id="griglia">
+    {progetti.map((p) => <ProjectCard progetto={p} />)}
+  </div>
+  <p class="vuoto" id="vuoto">Nessun progetto corrisponde ai filtri selezionati.</p>
+</Base>
+
+<script is:inline>
+  (function () {
+    var bottoni = Array.prototype.slice.call(document.querySelectorAll('#filtri button'));
+    var card = Array.prototype.slice.call(document.querySelectorAll('#griglia .card'));
+    var vuoto = document.getElementById('vuoto');
+    var contatore = document.getElementById('contatore');
+    var attivi = [];
+
+    function aggiorna() {
+      var visibili = 0;
+      card.forEach(function (c) {
+        var tag = (c.dataset.tag || '').split('|');
+        var ok = attivi.every(function (t) { return tag.indexOf(t) !== -1; });
+        c.style.display = ok ? '' : 'none';
+        if (ok) visibili++;
+      });
+      vuoto.style.display = visibili === 0 ? 'block' : 'none';
+      contatore.textContent = attivi.length ? visibili + ' di ' + card.length + ' progetti' : '';
+      bottoni.forEach(function (b) {
+        b.setAttribute('aria-pressed', attivi.indexOf(b.dataset.tag) !== -1 ? 'true' : 'false');
+      });
+    }
+
+    bottoni.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = b.dataset.tag, i = attivi.indexOf(t);
+        if (i === -1) attivi.push(t); else attivi.splice(i, 1);
+        aggiorna();
+      });
+    });
+    aggiorna();
+  })();
+</script>

@@ -1,0 +1,18 @@
+---
+import { TIPI } from '../config';
+import { periodo, normalizza, url, type Progetto } from '../utils';
+interface Props { progetto: Progetto }
+const { progetto } = Astro.props;
+const d = progetto.data;
+const tag = [...new Set(d.tag.map(normalizza))];
+---
+<article class="card" data-tag={tag.join('|')}>
+  {d.immagine && <img src={url(d.immagine)} alt="" loading="lazy" />}
+  <div class="card-corpo">
+    <span class="tipo">{TIPI[d.tipo]}</span>
+    <a class="titolo" href={url(`/progetti/${progetto.id}/`)}>{d.titolo}</a>
+    <span class="meta">{periodo(progetto)}</span>
+    <p class="risultato">{d.risultato}</p>
+    <div class="tags">{tag.map((t) => <span class="tag">{t}</span>)}</div>
+  </div>
+</article>

@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+---
+<Base titolo="About" descrizione={`Chi è ${SITE.nome}`}>
+  <h1>About</h1>
+  <p>
+    Sono {SITE.nome}, studente di Scienze statistiche all'Università di Padova e data analyst in formazione.
+    Lavoro soprattutto con R e con l'analisi statistica dei dati.
+  </p>
+
+  <h2>Cosa cerco</h2>
+  <p>
+    Cerco il mio primo ruolo come data analyst. Mi interessa in particolare l'ambito sportivo,
+    che sto esplorando con progetti personali.
+  </p>
+
+  <h2>Strumenti</h2>
+  <p class="mono">R · RStudio · Git · QGIS</p>
+
+  <h2>Formazione</h2>
+  <p>
+    Laurea magistrale in Scienze statistiche, Università di Padova.
+    Laurea prevista entro marzo 2027.
+  </p>
+</Base>
