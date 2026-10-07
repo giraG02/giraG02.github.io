@@ -9,6 +9,7 @@ tag: ["web", "ai", "moduli", "privacy"]
 link:
   - etichetta: "Sito online"
     url: "https://rachelecavaliere.it"
+immagine: "/immagini/sito-rachele-desktop.png"
 in_evidenza: false
 bozza: false
 ---
@@ -21,6 +22,8 @@ Ho guidato Claude nello sviluppo di un sito statico in HTML e CSS, pensato per s
 
 ## Risultato
 Il sito è online e i moduli funzionano: sono già arrivate richieste reali. Lo mantengo io.
+
+![Home del sito su smartphone](/immagini/sito-rachele-mobile.png)
 
 ## Cosa ho imparato
 So guidare un assistente AI nello sviluppo web, verificare il risultato con test su dispositivi reali e limitare fin dall'inizio i dati personali raccolti.
