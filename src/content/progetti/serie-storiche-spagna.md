@@ -11,6 +11,7 @@ link:
   - etichetta: "Repository"
     url: "https://github.com/giraG02/serie-storiche-spagna"
 report: "/report/serie-storiche-spagna.pdf"
+immagine: "/immagini/spagna-previsioni.png"
 in_evidenza: false
 bozza: false
 ---
