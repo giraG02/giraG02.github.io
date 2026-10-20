@@ -7,6 +7,7 @@ strumenti: ["R", "Quarto", "Synth", "augsynth"]
 ruolo: "Progetto di gruppo (con A.C. Mattazzi e G. Tossici). Mio contributo: gran parte del codice R dell'analisi."
 risultato: "Replicati pesi, medie dei predittori e test principali del paper; documentate le differenze nel filtro placebo e negli intervalli di confidenza."
 tag: ["inferenza causale", "controllo sintetico", "replica", "R"]
+report: "/report/GirardiMattazziTossici_pubblico.pdf"
 in_evidenza: false
 bozza: false
 ---
