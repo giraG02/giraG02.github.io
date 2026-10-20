@@ -24,8 +24,12 @@ Chi anticipa chi: PIL, investimenti o tassi di interesse? Ho analizzato i dati t
 ## Approccio e metodo
 Dati Eurostat (tassi dell'area euro). Stima fino al 2019, verifica dal 2020 per escludere il Covid. In R: test ADF, VAR(1) con causalità di Granger, risposte all'impulso, cointegrazione di Johansen, funzione di trasferimento; previsioni degli investimenti confrontate con un ARIMA.
 
+![Le quattro serie della Spagna, 1995-2025](/immagini/spagna-serie.png)
+
 ## Risultato
 Il VAR(1) prevede gli investimenti meglio dell'ARIMA (RMSE 0,078 contro 0,081), il VECM peggio (0,181), forse per la rottura causata dal Covid. Limiti: residui non normali, eteroschedasticità nel PIL, shock Covid imprevedibile.
+
+![Risposta degli investimenti a uno shock del PIL](/immagini/spagna-irf.png)
 
 ## Cosa ho imparato
 So impostare in R un'analisi multivariata di serie storiche, dalla stazionarietà alla previsione, e confrontare i modelli su un periodo di verifica separato.
