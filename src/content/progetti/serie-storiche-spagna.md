@@ -19,6 +19,8 @@ bozza: false
 ## Problema
 Chi anticipa chi: PIL, investimenti o tassi di interesse? Ho analizzato i dati trimestrali della Spagna (1995–2025). Il PIL anticipa investimenti e tassi a breve; gli investimenti non risultano anticipare nessuna delle altre serie.
 
+![Schema delle relazioni di Granger tra PIL, investimenti, tasso a breve e tasso a lungo](/immagini/spagna-granger.png)
+
 ## Approccio e metodo
 Dati Eurostat (tassi dell'area euro). Stima fino al 2019, verifica dal 2020 per escludere il Covid. In R: test ADF, VAR(1) con causalità di Granger, risposte all'impulso, cointegrazione di Johansen, funzione di trasferimento; previsioni degli investimenti confrontate con un ARIMA.
 
