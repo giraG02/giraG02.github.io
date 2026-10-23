@@ -8,6 +8,7 @@ ruolo: "Progetto di gruppo (con A.C. Mattazzi e G. Tossici). Mio contributo: gra
 risultato: "Replicati pesi, medie dei predittori e test principali del paper; documentate le differenze nel filtro placebo e negli intervalli di confidenza."
 tag: ["inferenza causale", "controllo sintetico", "replica", "R"]
 report: "/report/GirardiMattazziTossici_pubblico.pdf"
+immagine: "/immagini/fukushima-reale-vs-sintetica.png"
 link:
    - etichetta: "Presentazione (PDF)"
      url: "/report/Presentazione_Fukushima_compressa.pdf"
