@@ -1,7 +1,7 @@
 ---
 titolo: "Analisi territoriale della sicurezza stradale e dello sviluppo infrastrutturale in Spagna (2015-2023)"
 tipo: "universitario"
-inizio: 2026-02
+inizio: 2025-11
 fine: 2026-02
 strumenti: ["QGIS", "Data Plotly"]
 ruolo: "Autore unico (elaborato individuale)"
